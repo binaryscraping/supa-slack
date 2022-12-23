@@ -11,6 +11,11 @@
 		7967ACAE2956200300C30D93 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACAD2956200300C30D93 /* ContentView.swift */; };
 		7967ACB02956200400C30D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7967ACAF2956200400C30D93 /* Assets.xcassets */; };
 		7967ACB42956200400C30D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7967ACB32956200400C30D93 /* Preview Assets.xcassets */; };
+		7967ACBC2956206700C30D93 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACBB2956206700C30D93 /* Supabase */; };
+		7967ACBF2956208100C30D93 /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACBE2956208100C30D93 /* IdentifiedCollections */; };
+		7967ACC2295620CD00C30D93 /* XCTestDynamicOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACC1295620CD00C30D93 /* XCTestDynamicOverlay */; };
+		7967ACC5295620E100C30D93 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACC4295620E100C30D93 /* SwiftUINavigation */; };
+		7967ACC7295620E100C30D93 /* _SwiftUINavigationState in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACC6295620E100C30D93 /* _SwiftUINavigationState */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7967ACC5295620E100C30D93 /* SwiftUINavigation in Frameworks */,
+				7967ACBC2956206700C30D93 /* Supabase in Frameworks */,
+				7967ACC2295620CD00C30D93 /* XCTestDynamicOverlay in Frameworks */,
+				7967ACC7295620E100C30D93 /* _SwiftUINavigationState in Frameworks */,
+				7967ACBF2956208100C30D93 /* IdentifiedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +95,13 @@
 			dependencies = (
 			);
 			name = SupaSlack;
+			packageProductDependencies = (
+				7967ACBB2956206700C30D93 /* Supabase */,
+				7967ACBE2956208100C30D93 /* IdentifiedCollections */,
+				7967ACC1295620CD00C30D93 /* XCTestDynamicOverlay */,
+				7967ACC4295620E100C30D93 /* SwiftUINavigation */,
+				7967ACC6295620E100C30D93 /* _SwiftUINavigationState */,
+			);
 			productName = SupaSlack;
 			productReference = 7967ACA82956200300C30D93 /* SupaSlack.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +130,12 @@
 				Base,
 			);
 			mainGroup = 7967AC9F2956200300C30D93;
+			packageReferences = (
+				7967ACBA2956206700C30D93 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				7967ACBD2956208100C30D93 /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
+				7967ACC0295620CD00C30D93 /* XCRemoteSwiftPackageReference "xctest-dynamic-overlay" */,
+				7967ACC3295620E100C30D93 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
+			);
 			productRefGroup = 7967ACA92956200300C30D93 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,6 +377,69 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7967ACBA2956206700C30D93 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift";
+			requirement = {
+				branch = "release-candidate";
+				kind = branch;
+			};
+		};
+		7967ACBD2956208100C30D93 /* XCRemoteSwiftPackageReference "swift-identified-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-identified-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+		7967ACC0295620CD00C30D93 /* XCRemoteSwiftPackageReference "xctest-dynamic-overlay" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/xctest-dynamic-overlay.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+		7967ACC3295620E100C30D93 /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7967ACBB2956206700C30D93 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7967ACBA2956206700C30D93 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		7967ACBE2956208100C30D93 /* IdentifiedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7967ACBD2956208100C30D93 /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
+			productName = IdentifiedCollections;
+		};
+		7967ACC1295620CD00C30D93 /* XCTestDynamicOverlay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7967ACC0295620CD00C30D93 /* XCRemoteSwiftPackageReference "xctest-dynamic-overlay" */;
+			productName = XCTestDynamicOverlay;
+		};
+		7967ACC4295620E100C30D93 /* SwiftUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7967ACC3295620E100C30D93 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
+			productName = SwiftUINavigation;
+		};
+		7967ACC6295620E100C30D93 /* _SwiftUINavigationState */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7967ACC3295620E100C30D93 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
+			productName = _SwiftUINavigationState;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7967ACA02956200300C30D93 /* Project object */;
 }
