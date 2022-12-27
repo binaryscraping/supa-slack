@@ -1,6 +1,33 @@
 {
   "pins" : [
     {
+      "identity" : "bs-apple-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/binaryscraping/bs-apple-kit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "aa70f68a9899e4ee0155aa290d6f3d95db53ed5c"
+      }
+    },
+    {
+      "identity" : "combine-schedulers",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/combine-schedulers",
+      "state" : {
+        "revision" : "882ac01eb7ef9e36d4467eb4b1151e74fcef85ab",
+        "version" : "0.9.1"
+      }
+    },
+    {
+      "identity" : "concurrencyplus",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ChimeHQ/ConcurrencyPlus",
+      "state" : {
+        "revision" : "b5ba8d5ea6bfe9e43ccc44aa63f9b458057fa0f4",
+        "version" : "0.4.1"
+      }
+    },
+    {
       "identity" : "functions-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/supabase-community/functions-swift",
@@ -91,12 +118,30 @@
       }
     },
     {
+      "identity" : "swift-clocks",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-clocks",
+      "state" : {
+        "revision" : "20b25ca0dd88ebfb9111ec937814ddc5a8880172",
+        "version" : "0.2.0"
+      }
+    },
+    {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
         "revision" : "937e904258d22af6e447a0b72c0bc67583ef64a2",
         "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "swift-composable-architecture",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-composable-architecture.git",
+      "state" : {
+        "revision" : "c9259b5f74892690cb04a9a8088b4a1789b05a7d",
+        "version" : "0.47.2"
       }
     },
     {
@@ -118,12 +163,30 @@
       }
     },
     {
+      "identity" : "swift-tagged",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-tagged.git",
+      "state" : {
+        "revision" : "af06825aaa6adffd636c10a2570b2010c7c07e6a",
+        "version" : "0.9.0"
+      }
+    },
+    {
       "identity" : "swiftui-navigation",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swiftui-navigation.git",
       "state" : {
         "revision" : "46acf5ecc1cabdb28d7fe03289f6c8b13a023f52",
         "version" : "0.4.5"
+      }
+    },
+    {
+      "identity" : "swiftui-toast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/binaryscraping/swiftui-toast",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1a2a394125cb2a7692009b0d208fc16720332018"
       }
     },
     {

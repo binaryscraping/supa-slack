@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SupaSlackApp: App {
+  @StateObject var viewModel = AppViewModel()
+
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      AppView(viewModel: viewModel)
     }
   }
 }

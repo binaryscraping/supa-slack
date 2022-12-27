@@ -7,8 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		791497CA2956FC0200525E6A /* ConcurrencyHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = 791497C92956FC0200525E6A /* ConcurrencyHelpers */; };
+		791497CC2956FC0200525E6A /* DebuggingHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = 791497CB2956FC0200525E6A /* DebuggingHelpers */; };
+		791497CE2956FC0200525E6A /* Prelude in Frameworks */ = {isa = PBXBuildFile; productRef = 791497CD2956FC0200525E6A /* Prelude */; };
+		791497D02956FC0200525E6A /* SwiftUIHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = 791497CF2956FC0200525E6A /* SwiftUIHelpers */; };
+		791497D32956FC5900525E6A /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 791497D22956FC5900525E6A /* ToastUI */; };
+		791497D52956FCA200525E6A /* ToastState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791497D42956FCA200525E6A /* ToastState.swift */; };
+		791497D72956FF5F00525E6A /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791497D62956FF5F00525E6A /* ChannelListView.swift */; };
+		791497D92956FF9600525E6A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791497D82956FF9600525E6A /* Models.swift */; };
+		791497DB295700B900525E6A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791497DA295700B900525E6A /* APIClient.swift */; };
+		791497DD2957058000525E6A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791497DC2957058000525E6A /* Store.swift */; };
+		793700DC29563D7A00D13E50 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 793700DB29563D7A00D13E50 /* Dependencies */; };
 		7967ACAC2956200300C30D93 /* SupaSlackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACAB2956200300C30D93 /* SupaSlackApp.swift */; };
-		7967ACAE2956200300C30D93 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACAD2956200300C30D93 /* ContentView.swift */; };
+		7967ACAE2956200300C30D93 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACAD2956200300C30D93 /* AppView.swift */; };
 		7967ACB02956200400C30D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7967ACAF2956200400C30D93 /* Assets.xcassets */; };
 		7967ACB42956200400C30D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7967ACB32956200400C30D93 /* Preview Assets.xcassets */; };
 		7967ACBC2956206700C30D93 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACBB2956206700C30D93 /* Supabase */; };
@@ -16,15 +27,37 @@
 		7967ACC2295620CD00C30D93 /* XCTestDynamicOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACC1295620CD00C30D93 /* XCTestDynamicOverlay */; };
 		7967ACC5295620E100C30D93 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACC4295620E100C30D93 /* SwiftUINavigation */; };
 		7967ACC7295620E100C30D93 /* _SwiftUINavigationState in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACC6295620E100C30D93 /* _SwiftUINavigationState */; };
+		7967ACC92956212C00C30D93 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACC82956212C00C30D93 /* AuthClient.swift */; };
+		7967ACCC2956216100C30D93 /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = 7967ACCB2956216100C30D93 /* Tagged */; };
+		7967ACD02956225100C30D93 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACCF2956225100C30D93 /* AuthView.swift */; };
+		7967ACD2295624CB00C30D93 /* SupaTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACD1295624CB00C30D93 /* SupaTextFieldStyle.swift */; };
+		7967ACD42956255200C30D93 /* SupaButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACD32956255200C30D93 /* SupaButtonStyle.swift */; };
+		7967ACD6295638FD00C30D93 /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACD5295638FD00C30D93 /* Supabase.swift */; };
+		79D6A0CA2959D58D00186187 /* ComposeMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6A0C92959D58D00186187 /* ComposeMessageView.swift */; };
+		79D6A0CC2959D5CA00186187 /* MessageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6A0CB2959D5CA00186187 /* MessageRowView.swift */; };
+		79DB4CCB2959AB4200AE167A /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB4CCA2959AB4200AE167A /* MessagesListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		791497D42956FCA200525E6A /* ToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastState.swift; sourceTree = "<group>"; };
+		791497D62956FF5F00525E6A /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
+		791497D82956FF9600525E6A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		791497DA295700B900525E6A /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		791497DC2957058000525E6A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		7967ACA82956200300C30D93 /* SupaSlack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SupaSlack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7967ACAB2956200300C30D93 /* SupaSlackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaSlackApp.swift; sourceTree = "<group>"; };
-		7967ACAD2956200300C30D93 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7967ACAD2956200300C30D93 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		7967ACAF2956200400C30D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7967ACB12956200400C30D93 /* SupaSlack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SupaSlack.entitlements; sourceTree = "<group>"; };
 		7967ACB32956200400C30D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7967ACC82956212C00C30D93 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
+		7967ACCF2956225100C30D93 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		7967ACD1295624CB00C30D93 /* SupaTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaTextFieldStyle.swift; sourceTree = "<group>"; };
+		7967ACD32956255200C30D93 /* SupaButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaButtonStyle.swift; sourceTree = "<group>"; };
+		7967ACD5295638FD00C30D93 /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
+		79D6A0C92959D58D00186187 /* ComposeMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageView.swift; sourceTree = "<group>"; };
+		79D6A0CB2959D5CA00186187 /* MessageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRowView.swift; sourceTree = "<group>"; };
+		79DB4CCA2959AB4200AE167A /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,10 +65,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				791497D32956FC5900525E6A /* ToastUI in Frameworks */,
+				791497CA2956FC0200525E6A /* ConcurrencyHelpers in Frameworks */,
+				7967ACCC2956216100C30D93 /* Tagged in Frameworks */,
 				7967ACC5295620E100C30D93 /* SwiftUINavigation in Frameworks */,
+				791497CC2956FC0200525E6A /* DebuggingHelpers in Frameworks */,
 				7967ACBC2956206700C30D93 /* Supabase in Frameworks */,
+				793700DC29563D7A00D13E50 /* Dependencies in Frameworks */,
 				7967ACC2295620CD00C30D93 /* XCTestDynamicOverlay in Frameworks */,
 				7967ACC7295620E100C30D93 /* _SwiftUINavigationState in Frameworks */,
+				791497CE2956FC0200525E6A /* Prelude in Frameworks */,
+				791497D02956FC0200525E6A /* SwiftUIHelpers in Frameworks */,
 				7967ACBF2956208100C30D93 /* IdentifiedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,10 +103,23 @@
 			isa = PBXGroup;
 			children = (
 				7967ACAB2956200300C30D93 /* SupaSlackApp.swift */,
-				7967ACAD2956200300C30D93 /* ContentView.swift */,
+				7967ACAD2956200300C30D93 /* AppView.swift */,
 				7967ACAF2956200400C30D93 /* Assets.xcassets */,
 				7967ACB12956200400C30D93 /* SupaSlack.entitlements */,
 				7967ACB22956200400C30D93 /* Preview Content */,
+				7967ACC82956212C00C30D93 /* AuthClient.swift */,
+				7967ACCF2956225100C30D93 /* AuthView.swift */,
+				7967ACD1295624CB00C30D93 /* SupaTextFieldStyle.swift */,
+				7967ACD32956255200C30D93 /* SupaButtonStyle.swift */,
+				7967ACD5295638FD00C30D93 /* Supabase.swift */,
+				791497D42956FCA200525E6A /* ToastState.swift */,
+				791497D62956FF5F00525E6A /* ChannelListView.swift */,
+				791497D82956FF9600525E6A /* Models.swift */,
+				791497DA295700B900525E6A /* APIClient.swift */,
+				791497DC2957058000525E6A /* Store.swift */,
+				79DB4CCA2959AB4200AE167A /* MessagesListView.swift */,
+				79D6A0C92959D58D00186187 /* ComposeMessageView.swift */,
+				79D6A0CB2959D5CA00186187 /* MessageRowView.swift */,
 			);
 			path = SupaSlack;
 			sourceTree = "<group>";
@@ -101,6 +154,13 @@
 				7967ACC1295620CD00C30D93 /* XCTestDynamicOverlay */,
 				7967ACC4295620E100C30D93 /* SwiftUINavigation */,
 				7967ACC6295620E100C30D93 /* _SwiftUINavigationState */,
+				7967ACCB2956216100C30D93 /* Tagged */,
+				793700DB29563D7A00D13E50 /* Dependencies */,
+				791497C92956FC0200525E6A /* ConcurrencyHelpers */,
+				791497CB2956FC0200525E6A /* DebuggingHelpers */,
+				791497CD2956FC0200525E6A /* Prelude */,
+				791497CF2956FC0200525E6A /* SwiftUIHelpers */,
+				791497D22956FC5900525E6A /* ToastUI */,
 			);
 			productName = SupaSlack;
 			productReference = 7967ACA82956200300C30D93 /* SupaSlack.app */;
@@ -135,6 +195,10 @@
 				7967ACBD2956208100C30D93 /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
 				7967ACC0295620CD00C30D93 /* XCRemoteSwiftPackageReference "xctest-dynamic-overlay" */,
 				7967ACC3295620E100C30D93 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
+				7967ACCA2956216100C30D93 /* XCRemoteSwiftPackageReference "swift-tagged" */,
+				793700DA29563D7A00D13E50 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				791497C82956FC0200525E6A /* XCRemoteSwiftPackageReference "bs-apple-kit" */,
+				791497D12956FC5900525E6A /* XCRemoteSwiftPackageReference "swiftui-toast" */,
 			);
 			productRefGroup = 7967ACA92956200300C30D93 /* Products */;
 			projectDirPath = "";
@@ -162,8 +226,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7967ACAE2956200300C30D93 /* ContentView.swift in Sources */,
+				7967ACAE2956200300C30D93 /* AppView.swift in Sources */,
+				7967ACD02956225100C30D93 /* AuthView.swift in Sources */,
+				7967ACD42956255200C30D93 /* SupaButtonStyle.swift in Sources */,
+				791497DD2957058000525E6A /* Store.swift in Sources */,
+				7967ACD2295624CB00C30D93 /* SupaTextFieldStyle.swift in Sources */,
+				79D6A0CA2959D58D00186187 /* ComposeMessageView.swift in Sources */,
+				79D6A0CC2959D5CA00186187 /* MessageRowView.swift in Sources */,
+				7967ACD6295638FD00C30D93 /* Supabase.swift in Sources */,
+				791497DB295700B900525E6A /* APIClient.swift in Sources */,
+				791497D72956FF5F00525E6A /* ChannelListView.swift in Sources */,
+				7967ACC92956212C00C30D93 /* AuthClient.swift in Sources */,
 				7967ACAC2956200300C30D93 /* SupaSlackApp.swift in Sources */,
+				791497D52956FCA200525E6A /* ToastState.swift in Sources */,
+				79DB4CCB2959AB4200AE167A /* MessagesListView.swift in Sources */,
+				791497D92956FF9600525E6A /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +389,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -350,6 +428,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -379,6 +458,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		791497C82956FC0200525E6A /* XCRemoteSwiftPackageReference "bs-apple-kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/binaryscraping/bs-apple-kit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		791497D12956FC5900525E6A /* XCRemoteSwiftPackageReference "swiftui-toast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/binaryscraping/swiftui-toast";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		793700DA29563D7A00D13E50 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.47.2;
+			};
+		};
 		7967ACBA2956206700C30D93 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase-community/supabase-swift";
@@ -411,9 +514,47 @@
 				minimumVersion = 0.4.5;
 			};
 		};
+		7967ACCA2956216100C30D93 /* XCRemoteSwiftPackageReference "swift-tagged" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-tagged.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		791497C92956FC0200525E6A /* ConcurrencyHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 791497C82956FC0200525E6A /* XCRemoteSwiftPackageReference "bs-apple-kit" */;
+			productName = ConcurrencyHelpers;
+		};
+		791497CB2956FC0200525E6A /* DebuggingHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 791497C82956FC0200525E6A /* XCRemoteSwiftPackageReference "bs-apple-kit" */;
+			productName = DebuggingHelpers;
+		};
+		791497CD2956FC0200525E6A /* Prelude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 791497C82956FC0200525E6A /* XCRemoteSwiftPackageReference "bs-apple-kit" */;
+			productName = Prelude;
+		};
+		791497CF2956FC0200525E6A /* SwiftUIHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 791497C82956FC0200525E6A /* XCRemoteSwiftPackageReference "bs-apple-kit" */;
+			productName = SwiftUIHelpers;
+		};
+		791497D22956FC5900525E6A /* ToastUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 791497D12956FC5900525E6A /* XCRemoteSwiftPackageReference "swiftui-toast" */;
+			productName = ToastUI;
+		};
+		793700DB29563D7A00D13E50 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 793700DA29563D7A00D13E50 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = Dependencies;
+		};
 		7967ACBB2956206700C30D93 /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7967ACBA2956206700C30D93 /* XCRemoteSwiftPackageReference "supabase-swift" */;
@@ -438,6 +579,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7967ACC3295620E100C30D93 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
 			productName = _SwiftUINavigationState;
+		};
+		7967ACCB2956216100C30D93 /* Tagged */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7967ACCA2956216100C30D93 /* XCRemoteSwiftPackageReference "swift-tagged" */;
+			productName = Tagged;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
