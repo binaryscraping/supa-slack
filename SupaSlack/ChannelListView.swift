@@ -1,6 +1,6 @@
 import Combine
-import IdentifiedCollections
 import Dependencies
+import IdentifiedCollections
 import Supabase
 import SwiftUI
 import ToastUI

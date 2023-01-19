@@ -72,7 +72,15 @@ final class Store: ObservableObject {
     let userID = User.ID(session.user.id)
 
     // Create a local message object without a remote id.
-    var localMessage = try await Message(id: UUID(), remoteID: nil, insertedAt: Date(), message: message, channel: channel(for: channelId), author: author(for: userID), status: .local)
+    var localMessage = try await Message(
+      id: UUID(),
+      remoteID: nil,
+      insertedAt: Date(),
+      message: message,
+      channel: channel(for: channelId),
+      author: author(for: userID),
+      status: .local
+    )
 
     // Insert local message to update UI.
     messages[channelId, default: []].append(localMessage)

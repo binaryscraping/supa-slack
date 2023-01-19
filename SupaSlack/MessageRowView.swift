@@ -27,9 +27,7 @@ struct MessageRowView: View {
       case .local:
         ProgressView()
       case .failure:
-        Button {
-
-        } label: {
+        Button {} label: {
           Image(systemName: "exclamationmark.icloud")
         }
         .tint(.red)

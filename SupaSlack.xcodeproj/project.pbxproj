@@ -33,6 +33,9 @@
 		7967ACD2295624CB00C30D93 /* SupaTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACD1295624CB00C30D93 /* SupaTextFieldStyle.swift */; };
 		7967ACD42956255200C30D93 /* SupaButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACD32956255200C30D93 /* SupaButtonStyle.swift */; };
 		7967ACD6295638FD00C30D93 /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967ACD5295638FD00C30D93 /* Supabase.swift */; };
+		79B2F755297936E20091B3D9 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 79B2F754297936E20091B3D9 /* GRDB */; };
+		79B2F758297936F50091B3D9 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2F757297936F50091B3D9 /* AppDatabase.swift */; };
+		79B2F75A297937150091B3D9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2F759297937150091B3D9 /* Persistence.swift */; };
 		79D6A0CA2959D58D00186187 /* ComposeMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6A0C92959D58D00186187 /* ComposeMessageView.swift */; };
 		79D6A0CC2959D5CA00186187 /* MessageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6A0CB2959D5CA00186187 /* MessageRowView.swift */; };
 		79DB4CCB2959AB4200AE167A /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB4CCA2959AB4200AE167A /* MessagesListView.swift */; };
@@ -55,6 +58,8 @@
 		7967ACD1295624CB00C30D93 /* SupaTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaTextFieldStyle.swift; sourceTree = "<group>"; };
 		7967ACD32956255200C30D93 /* SupaButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaButtonStyle.swift; sourceTree = "<group>"; };
 		7967ACD5295638FD00C30D93 /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
+		79B2F757297936F50091B3D9 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		79B2F759297937150091B3D9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		79D6A0C92959D58D00186187 /* ComposeMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageView.swift; sourceTree = "<group>"; };
 		79D6A0CB2959D5CA00186187 /* MessageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRowView.swift; sourceTree = "<group>"; };
 		79DB4CCA2959AB4200AE167A /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 				7967ACCC2956216100C30D93 /* Tagged in Frameworks */,
 				7967ACC5295620E100C30D93 /* SwiftUINavigation in Frameworks */,
 				791497CC2956FC0200525E6A /* DebuggingHelpers in Frameworks */,
+				79B2F755297936E20091B3D9 /* GRDB in Frameworks */,
 				7967ACBC2956206700C30D93 /* Supabase in Frameworks */,
 				793700DC29563D7A00D13E50 /* Dependencies in Frameworks */,
 				7967ACC2295620CD00C30D93 /* XCTestDynamicOverlay in Frameworks */,
@@ -102,6 +108,7 @@
 		7967ACAA2956200300C30D93 /* SupaSlack */ = {
 			isa = PBXGroup;
 			children = (
+				79B2F756297936E70091B3D9 /* Database */,
 				7967ACAB2956200300C30D93 /* SupaSlackApp.swift */,
 				7967ACAD2956200300C30D93 /* AppView.swift */,
 				7967ACAF2956200400C30D93 /* Assets.xcassets */,
@@ -130,6 +137,15 @@
 				7967ACB32956200400C30D93 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		79B2F756297936E70091B3D9 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				79B2F757297936F50091B3D9 /* AppDatabase.swift */,
+				79B2F759297937150091B3D9 /* Persistence.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +177,7 @@
 				791497CD2956FC0200525E6A /* Prelude */,
 				791497CF2956FC0200525E6A /* SwiftUIHelpers */,
 				791497D22956FC5900525E6A /* ToastUI */,
+				79B2F754297936E20091B3D9 /* GRDB */,
 			);
 			productName = SupaSlack;
 			productReference = 7967ACA82956200300C30D93 /* SupaSlack.app */;
@@ -199,6 +216,7 @@
 				793700DA29563D7A00D13E50 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				791497C82956FC0200525E6A /* XCRemoteSwiftPackageReference "bs-apple-kit" */,
 				791497D12956FC5900525E6A /* XCRemoteSwiftPackageReference "swiftui-toast" */,
+				79B2F753297936E20091B3D9 /* XCRemoteSwiftPackageReference "GRDB" */,
 			);
 			productRefGroup = 7967ACA92956200300C30D93 /* Products */;
 			projectDirPath = "";
@@ -228,6 +246,8 @@
 			files = (
 				7967ACAE2956200300C30D93 /* AppView.swift in Sources */,
 				7967ACD02956225100C30D93 /* AuthView.swift in Sources */,
+				79B2F75A297937150091B3D9 /* Persistence.swift in Sources */,
+				79B2F758297936F50091B3D9 /* AppDatabase.swift in Sources */,
 				7967ACD42956255200C30D93 /* SupaButtonStyle.swift in Sources */,
 				791497DD2957058000525E6A /* Store.swift in Sources */,
 				7967ACD2295624CB00C30D93 /* SupaTextFieldStyle.swift in Sources */,
@@ -522,6 +542,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		79B2F753297936E20091B3D9 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -584,6 +612,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7967ACCA2956216100C30D93 /* XCRemoteSwiftPackageReference "swift-tagged" */;
 			productName = Tagged;
+		};
+		79B2F754297936E20091B3D9 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79B2F753297936E20091B3D9 /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

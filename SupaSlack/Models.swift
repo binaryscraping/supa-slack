@@ -45,7 +45,7 @@ struct MessageResponse: Decodable, Hashable {
   let author: User
 
   enum CodingKeys: String, CodingKey {
-    case id = "id"
+    case id
     case insertedAt = "inserted_at"
     case message
     case channel
