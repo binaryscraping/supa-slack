@@ -26,45 +26,87 @@ final class Store: ObservableObject {
   @Dependency(\.auth) private var auth
 
   @Published private(set) var users: IdentifiedArrayOf<User> = []
-  @Published private(set) var channels: [Channel] = []
+  @Published private(set) var channels: IdentifiedArrayOf<Channel> = []
   @Published private(set) var messages: [Channel.ID: IdentifiedArrayOf<Message>] = [:]
+
+  private var remoteIdToLocalIdMap: [Int: UUID] = [:]
+
+  private func makeMessage(from response: MessageResponse) -> Message {
+    if remoteIdToLocalIdMap[response.id] == nil {
+      remoteIdToLocalIdMap[response.id] = UUID()
+    }
+
+    let message = Message(
+      id: remoteIdToLocalIdMap[response.id]!,
+      remoteID: response.id,
+      insertedAt: response.insertedAt,
+      message: response.message,
+      channel: response.channel,
+      author: response.author,
+      status: .remote
+    )
+    return message
+  }
 
   func fetchChannels() async {
     do {
-      channels = try await api.fetchChannels()
-    } catch {}
+      channels = try await IdentifiedArrayOf(uniqueElements: api.fetchChannels())
+    } catch {
+      dump(error)
+    }
   }
 
   func fetchMessages(_ channelId: Channel.ID) async {
     do {
       messages[channelId] = IdentifiedArrayOf(
         uniqueElements: try await api
-          .fetchMessages(channelId)
+          .fetchMessages(channelId).map { makeMessage(from: $0) }
       )
-    } catch {}
+    } catch {
+      dump(error)
+    }
   }
 
   func submitNewMessage(_ message: String, _ channelId: Channel.ID) async throws -> Message {
     let session = try await auth.session()
-    let message = try await api.addMessage(message, channelId, User.ID(session.user.id))
-    return await handleNewMessage(message)
-  }
+    let userID = User.ID(session.user.id)
 
-  private func handleNewMessage(_ message: Message) async -> Message {
-    var message = message
+    // Create a local message object without a remote id.
+    var localMessage = try await Message(id: UUID(), remoteID: nil, insertedAt: Date(), message: message, channel: channel(for: channelId), author: author(for: userID), status: .local)
 
-    if message.author == nil {
+    // Insert local message to update UI.
+    messages[channelId, default: []].append(localMessage)
+
+    Task {
       do {
-        message.author = try await fetchUser(message.userID)
-      } catch {}
+        // Submit message to api.
+        let response = try await api.addMessage(message, channelId, User.ID(session.user.id))
+        localMessage.apply(response)
+        remoteIdToLocalIdMap[response.id] = localMessage.id
+
+      } catch {
+        localMessage.status = .failure
+      }
+
+      messages[channelId]?.updateOrAppend(localMessage)
     }
 
-    messages[message.channelID, default: []].updateOrAppend(message)
-
-    return message
+    return localMessage
   }
 
-  private func fetchUser(_ id: User.ID) async throws -> User {
+  private func handleMessageDeleted(_ message: Message) {
+    messages[message.channel.id]?.remove(id: message.id)
+  }
+
+  private func channel(for id: Channel.ID) throws -> Channel {
+    guard let channel = channels[id: id] else {
+      throw ChannelNotFoundError(id: id)
+    }
+
+    return channel
+  }
+
+  private func author(for id: User.ID) async throws -> User {
     if let user = users[id: id] {
       return user
     }
@@ -73,8 +115,8 @@ final class Store: ObservableObject {
     users.updateOrAppend(user)
     return user
   }
+}
 
-  private func handleMessageDeleted(_ message: Message) {
-    messages[message.channelID]?.remove(id: message.id)
-  }
+struct ChannelNotFoundError: Error {
+  let id: Channel.ID
 }

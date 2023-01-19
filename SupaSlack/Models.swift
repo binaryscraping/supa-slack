@@ -37,29 +37,72 @@ struct User: Identifiable, Codable, Hashable {
   static let mock = User(id: .init(), username: "grsouza", status: .online)
 }
 
-struct Message: Identifiable, Codable, Hashable {
-  let id: Tagged<Self, Int>
+struct MessageResponse: Decodable, Hashable {
+  let id: Int
   let insertedAt: Date
   let message: String
-  let userID: User.ID
-  let channelID: Channel.ID
-  var author: User?
+  let channel: Channel
+  let author: User
 
   enum CodingKeys: String, CodingKey {
-    case id
+    case id = "id"
     case insertedAt = "inserted_at"
     case message
-    case userID = "user_id"
-    case channelID = "channel_id"
+    case channel
     case author
   }
+}
 
-  static let mock = Self(
-    id: 1,
+struct Message: Identifiable, Hashable {
+  let id: UUID
+  var remoteID: Int?
+  var insertedAt: Date
+  var message: String
+  var channel: Channel
+  var author: User
+  var status: Status
+
+  enum Status {
+    case local
+    case remote
+    case failure
+  }
+
+  static let local = Self(
+    id: UUID(),
+    remoteID: nil,
     insertedAt: Date(),
-    message: "",
-    userID: User.mock.id,
-    channelID: 1,
-    author: .mock
+    message: "Local message",
+    channel: .mock,
+    author: .mock,
+    status: .local
   )
+  static let remote = Self(
+    id: UUID(),
+    remoteID: 1,
+    insertedAt: Date(),
+    message: "Remote message",
+    channel: .mock,
+    author: .mock,
+    status: .remote
+  )
+  static let failure = Self(
+    id: UUID(),
+    remoteID: nil,
+    insertedAt: Date(),
+    message: "Failure message",
+    channel: .mock,
+    author: .mock,
+    status: .failure
+  )
+}
+
+extension Message {
+  mutating func apply(_ response: MessageResponse) {
+    remoteID = response.id
+    message = response.message
+    channel = response.channel
+    author = response.author
+    status = .remote
+  }
 }

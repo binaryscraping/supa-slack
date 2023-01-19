@@ -8,8 +8,8 @@
 import ConcurrencyHelpers
 import Dependencies
 import Foundation
-import GoTrue
-import Supabase
+@preconcurrency import GoTrue
+@preconcurrency import Supabase
 import Tagged
 import XCTestDynamicOverlay
 
@@ -37,47 +37,51 @@ struct AuthClient {
 }
 
 extension AuthClient: DependencyKey {
-  static let liveValue = Self(
-    initialize: {
-      await SupabaseClient.instance.auth.initialize()
-    },
-    authEvent: {
-      let (stream, continuation) = AsyncStream<AuthEvent>.streamWithContinuation()
-
-      Task.detached {
-        for await event in SupabaseClient.instance.auth.authEventChange {
-          switch event {
-          case .signedIn:
-            continuation.yield(.signedIn)
-          default:
-            continuation.yield(.signedOut)
+  static var liveValue: Self {
+    @Dependency(\.supabase) var supabase
+    return Self(
+      initialize: {
+        await supabase.auth.initialize()
+      },
+      authEvent: {
+        AsyncStream(
+          supabase.auth.authEventChange.map { event in
+            switch event {
+            case .signedIn:
+              return .signedIn
+            default:
+              return .signedOut
+            }
           }
+        )
+      },
+      session: {
+        try await supabase.auth.session
+      },
+      signUp: { email, password in
+        let result = try await supabase.auth.signUp(
+          email: email.rawValue,
+          password: password.rawValue
+        )
+
+        switch result {
+        case let .session(session):
+          if session.user.confirmedAt == nil {
+            return .requiresConfirmation
+          }
+          return .signedIn
+        case .user:
+          return .requiresConfirmation
         }
+      },
+      signIn: { email, password in
+        try await supabase.auth.signIn(
+          email: email.rawValue,
+          password: password.rawValue
+        )
       }
-
-      return stream
-    },
-    session: { try await SupabaseClient.instance.auth.session },
-    signUp: { email, password in
-      let result = try await SupabaseClient.instance.auth.signUp(
-        email: email.rawValue,
-        password: password.rawValue
-      )
-
-      switch result {
-      case let .session(session):
-        return .signedIn
-      case let .user(user):
-        return .requiresConfirmation
-      }
-    },
-    signIn: { email, password in
-      try await SupabaseClient.instance.auth.signIn(
-        email: email.rawValue,
-        password: password.rawValue
-      )
-    }
-  )
+    )
+  }
 
   static let testValue = Self(
     initialize: XCTUnimplemented("AuthClient.initialize"),

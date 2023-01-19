@@ -22,11 +22,31 @@ struct MessageRowView: View {
       Text(message.message)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+    .overlay(alignment: .topTrailing) {
+      switch message.status {
+      case .local:
+        ProgressView()
+      case .failure:
+        Button {
+
+        } label: {
+          Image(systemName: "exclamationmark.icloud")
+        }
+        .tint(.red)
+      case .remote:
+        EmptyView()
+      }
+    }
   }
 }
 
 struct MessageRowView_Previews: PreviewProvider {
   static var previews: some View {
-    MessageRowView(message: .mock)
+    VStack {
+      MessageRowView(message: .local)
+      MessageRowView(message: .remote)
+      MessageRowView(message: .failure)
+    }
+    .padding()
   }
 }

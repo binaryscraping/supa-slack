@@ -1,4 +1,5 @@
 import Combine
+import IdentifiedCollections
 import Dependencies
 import Supabase
 import SwiftUI
@@ -8,7 +9,7 @@ import ToastUI
 final class ChannelListViewModel: ObservableObject {
   @Dependency(\.store) private var store
 
-  var channels: [Channel] {
+  var channels: IdentifiedArrayOf<Channel> {
     store.channels
   }
 
