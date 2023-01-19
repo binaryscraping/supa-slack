@@ -43,7 +43,7 @@ struct AppDatabase {
     migrator.registerMigration("createMessage") { db in
       try db.create(table: "message") { t in
         t.column("id", .text).primaryKey()
-        t.column("remoteID", .integer)
+        t.column("remoteID", .integer).unique()
         t.column("insertedAt", .date).notNull()
         t.column("message", .text).notNull().check { length($0) > 0 }
         t.column("channelId", .integer).notNull().references("channel", column: "id")
