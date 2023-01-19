@@ -55,3 +55,28 @@ struct AppDatabase {
     return migrator
   }
 }
+
+extension Message: FetchableRecord, PersistableRecord {}
+
+extension AppDatabase {
+  func save(_ message: MessageResponse) throws -> Message {
+    try dbWriter.write { db in
+      if var storedMessage = try Message.filter(Column("remoteID") == message.id).fetchOne(db) {
+        storedMessage.apply(message)
+        return try storedMessage.saved(db)
+      }
+
+      let newMessage = Message(
+        id: UUID(),
+        remoteID: message.id,
+        insertedAt: message.insertedAt,
+        message: message.message,
+        channel: message.channel,
+        author: message.author,
+        status: .remote
+      )
+
+      return try newMessage.inserted(db)
+    }
+  }
+}

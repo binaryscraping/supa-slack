@@ -53,7 +53,7 @@ struct MessageResponse: Decodable, Hashable {
   }
 }
 
-struct Message: Identifiable, Hashable {
+struct Message: Identifiable, Hashable, Codable {
   let id: UUID
   var remoteID: Int?
   var insertedAt: Date
@@ -62,7 +62,7 @@ struct Message: Identifiable, Hashable {
   var author: User
   var status: Status
 
-  enum Status {
+  enum Status: Int, Codable {
     case local
     case remote
     case failure

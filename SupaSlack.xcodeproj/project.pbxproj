@@ -47,7 +47,7 @@
 		791497D82956FF9600525E6A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		791497DA295700B900525E6A /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		791497DC2957058000525E6A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		7967ACA82956200300C30D93 /* SupaSlack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SupaSlack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7967ACA82956200300C30D93 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7967ACAB2956200300C30D93 /* SupaSlackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaSlackApp.swift; sourceTree = "<group>"; };
 		7967ACAD2956200300C30D93 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		7967ACAF2956200400C30D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		7967AC9F2956200300C30D93 = {
 			isa = PBXGroup;
 			children = (
-				7967ACAA2956200300C30D93 /* SupaSlack */,
+				7967ACAA2956200300C30D93 /* App */,
 				7967ACA92956200300C30D93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,12 +100,12 @@
 		7967ACA92956200300C30D93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7967ACA82956200300C30D93 /* SupaSlack.app */,
+				7967ACA82956200300C30D93 /* App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7967ACAA2956200300C30D93 /* SupaSlack */ = {
+		7967ACAA2956200300C30D93 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				79B2F756297936E70091B3D9 /* Database */,
@@ -128,7 +128,7 @@
 				79D6A0C92959D58D00186187 /* ComposeMessageView.swift */,
 				79D6A0CB2959D5CA00186187 /* MessageRowView.swift */,
 			);
-			path = SupaSlack;
+			path = App;
 			sourceTree = "<group>";
 		};
 		7967ACB22956200400C30D93 /* Preview Content */ = {
@@ -151,9 +151,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7967ACA72956200300C30D93 /* SupaSlack */ = {
+		7967ACA72956200300C30D93 /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7967ACB72956200400C30D93 /* Build configuration list for PBXNativeTarget "SupaSlack" */;
+			buildConfigurationList = 7967ACB72956200400C30D93 /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				7967ACA42956200300C30D93 /* Sources */,
 				7967ACA52956200300C30D93 /* Frameworks */,
@@ -163,7 +163,7 @@
 			);
 			dependencies = (
 			);
-			name = SupaSlack;
+			name = App;
 			packageProductDependencies = (
 				7967ACBB2956206700C30D93 /* Supabase */,
 				7967ACBE2956208100C30D93 /* IdentifiedCollections */,
@@ -180,7 +180,7 @@
 				79B2F754297936E20091B3D9 /* GRDB */,
 			);
 			productName = SupaSlack;
-			productReference = 7967ACA82956200300C30D93 /* SupaSlack.app */;
+			productReference = 7967ACA82956200300C30D93 /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -191,7 +191,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					7967ACA72956200300C30D93 = {
 						CreatedOnToolsVersion = 14.1;
@@ -222,7 +222,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7967ACA72956200300C30D93 /* SupaSlack */,
+				7967ACA72956200300C30D93 /* App */,
 			);
 		};
 /* End PBXProject section */
@@ -300,6 +300,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -358,6 +359,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -381,10 +383,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SupaSlack/SupaSlack.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/SupaSlack.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SupaSlack/Preview Content\"";
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
 				DEVELOPMENT_TEAM = ELTTE7K8TT;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -420,10 +424,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SupaSlack/SupaSlack.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/SupaSlack.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SupaSlack/Preview Content\"";
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
 				DEVELOPMENT_TEAM = ELTTE7K8TT;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -466,7 +472,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7967ACB72956200400C30D93 /* Build configuration list for PBXNativeTarget "SupaSlack" */ = {
+		7967ACB72956200400C30D93 /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7967ACB82956200400C30D93 /* Debug */,
