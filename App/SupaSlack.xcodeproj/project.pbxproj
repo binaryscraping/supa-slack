@@ -92,7 +92,7 @@
 		7967AC9F2956200300C30D93 = {
 			isa = PBXGroup;
 			children = (
-				7967ACAA2956200300C30D93 /* App */,
+				7967ACAA2956200300C30D93 /* Sources */,
 				7967ACA92956200300C30D93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7967ACAA2956200300C30D93 /* App */ = {
+		7967ACAA2956200300C30D93 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				79B2F756297936E70091B3D9 /* Database */,
@@ -128,7 +128,7 @@
 				79D6A0C92959D58D00186187 /* ComposeMessageView.swift */,
 				79D6A0CB2959D5CA00186187 /* MessageRowView.swift */,
 			);
-			path = App;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		7967ACB22956200400C30D93 /* Preview Content */ = {
@@ -383,12 +383,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = App/SupaSlack.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/SupaSlack.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
 				DEVELOPMENT_TEAM = ELTTE7K8TT;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -424,12 +424,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = App/SupaSlack.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/SupaSlack.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
 				DEVELOPMENT_TEAM = ELTTE7K8TT;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
