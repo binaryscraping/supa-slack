@@ -10,3 +10,4 @@
 --wrapparameters before-first
 --extensionacl on-declarations
 --maxwidth 100
+--header \n {file}\n (c) {created.year} Binary Scraping Co.\n LICENSE: MIT\n

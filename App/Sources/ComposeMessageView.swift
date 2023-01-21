@@ -1,8 +1,7 @@
 //
 //  ComposeMessageView.swift
-//  SupaSlack
-//
-//  Created by Guilherme Souza on 26/12/22.
+//  (c) 2022 Binary Scraping Co.
+//  LICENSE: MIT
 //
 
 import SwiftUI

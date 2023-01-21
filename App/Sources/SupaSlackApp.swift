@@ -1,10 +1,13 @@
 //
 //  SupaSlackApp.swift
-//  SupaSlack
-//
-//  Created by Guilherme Souza on 23/12/22.
+//  (c) 2022 Binary Scraping Co.
+//  LICENSE: MIT
 //
 
+import APIClientLive
+import AppFeature
+import AuthClientLive
+import DatabaseClientLive
 import SwiftUI
 
 @main

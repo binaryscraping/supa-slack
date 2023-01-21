@@ -4,25 +4,118 @@
 import PackageDescription
 
 let package = Package(
-    name: "SupaSlack",
-    products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "SupaSlack",
-            targets: ["SupaSlack"]),
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "SupaSlack",
-            dependencies: []),
-        .testTarget(
-            name: "SupaSlackTests",
-            dependencies: ["SupaSlack"]),
-    ]
+  name: "SupaSlack",
+  platforms: [.iOS(.v16), .macOS(.v13)],
+  products: [
+    .library(name: "APIClientLive", targets: ["APIClientLive"]),
+    .library(name: "AppFeature", targets: ["AppFeature"]),
+    .library(name: "AuthClientLive", targets: ["AuthClientLive"]),
+    .library(name: "AuthFeature", targets: ["AuthFeature"]),
+    .library(name: "ChannelsFeature", targets: ["ChannelsFeature"]),
+    .library(name: "DatabaseClientLive", targets: ["DatabaseClientLive"]),
+  ],
+  dependencies: [
+    .package(url: "https://github.com/binaryscraping/swiftui-toast", branch: "main"),
+    .package(url: "https://github.com/binaryscraping/bs-apple-kit", branch: "main"),
+    .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.1.0"),
+    .package(url: "https://github.com/pointfreeco/swift-tagged", from: "0.9.0"),
+    .package(url: "https://github.com/groue/GRDB.swift", from: "6.6.1"),
+    .package(
+      url: "https://github.com/supabase-community/supabase-swift",
+      branch: "release-candidate"
+    ),
+  ],
+  targets: [
+    .target(
+      name: "APIClient",
+      dependencies: [
+        "Models",
+        .product(name: "Dependencies", package: "swift-dependencies"),
+      ]
+    ),
+    .target(
+      name: "APIClientLive",
+      dependencies: [
+        "APIClient",
+        "SupabaseDependency",
+      ]
+    ),
+    .target(
+      name: "AppFeature",
+      dependencies: [
+        "AuthFeature",
+        "ChannelsFeature",
+        .product(name: "Dependencies", package: "swift-dependencies"),
+      ]
+    ),
+    .target(
+      name: "AuthClient",
+      dependencies: [
+        .product(name: "Dependencies", package: "swift-dependencies"),
+        .product(name: "Tagged", package: "swift-tagged"),
+      ]
+    ),
+    .target(
+      name: "AuthClientLive",
+      dependencies: [
+        "AuthClient",
+        "SupabaseDependency",
+      ]
+    ),
+    .target(
+      name: "AuthFeature",
+      dependencies: [
+        "AuthClient",
+        "Helpers",
+        .product(name: "SwiftUIHelpers", package: "bs-apple-kit"),
+        .product(name: "ToastUI", package: "swiftui-toast"),
+        .product(name: "Dependencies", package: "swift-dependencies"),
+      ]
+    ),
+    .target(
+      name: "ChannelsFeature",
+      dependencies: [
+        "APIClient",
+        "DatabaseClient",
+      ]
+    ),
+    .target(
+      name: "DatabaseClient",
+      dependencies: [
+        "Models",
+        .product(name: "Dependencies", package: "swift-dependencies"),
+      ]
+    ),
+    .target(
+      name: "DatabaseClientLive",
+      dependencies: [
+        "DatabaseClient",
+        .product(name: "Dependencies", package: "swift-dependencies"),
+        .product(name: "GRDB", package: "GRDB.swift"),
+      ]
+    ),
+    .testTarget(
+      name: "DatabaseClientLiveTests",
+      dependencies: ["DatabaseClientLive"]
+    ),
+    .target(
+      name: "Helpers",
+      dependencies: [
+        .product(name: "ToastUI", package: "swiftui-toast"),
+      ]
+    ),
+    .target(
+      name: "Models",
+      dependencies: [
+        .product(name: "Tagged", package: "swift-tagged"),
+      ]
+    ),
+    .target(
+      name: "SupabaseDependency",
+      dependencies: [
+        .product(name: "Dependencies", package: "swift-dependencies"),
+        .product(name: "Supabase", package: "supabase-swift"),
+      ]
+    ),
+  ]
 )

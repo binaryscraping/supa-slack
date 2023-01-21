@@ -17,7 +17,7 @@
                BlueprintIdentifier = "7967ACA72956200300C30D93"
                BuildableName = "App.app"
                BlueprintName = "App"
-               ReferencedContainer = "container:SupaSlack.xcodeproj">
+               ReferencedContainer = "container:App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "7967ACA72956200300C30D93"
             BuildableName = "App.app"
             BlueprintName = "App"
-            ReferencedContainer = "container:SupaSlack.xcodeproj">
+            ReferencedContainer = "container:App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "7967ACA72956200300C30D93"
             BuildableName = "App.app"
             BlueprintName = "App"
-            ReferencedContainer = "container:SupaSlack.xcodeproj">
+            ReferencedContainer = "container:App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

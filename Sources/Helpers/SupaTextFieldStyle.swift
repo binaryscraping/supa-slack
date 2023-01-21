@@ -1,14 +1,13 @@
 //
-//  SwiftUIView.swift
-//  SupaSlack
-//
-//  Created by Guilherme Souza on 23/12/22.
+//  SupaTextFieldStyle.swift
+//  (c) 2022 Binary Scraping Co.
+//  LICENSE: MIT
 //
 
 import SwiftUI
 
-struct SupaTextFieldStyle: TextFieldStyle {
-  func _body(configuration: TextField<Self._Label>) -> some View {
+public struct SupaTextFieldStyle: TextFieldStyle {
+  public func _body(configuration: TextField<Self._Label>) -> some View {
     configuration
       .padding()
       .background(.regularMaterial)
@@ -23,7 +22,7 @@ struct SupaTextFieldStyle: TextFieldStyle {
 }
 
 extension TextFieldStyle where Self == SupaTextFieldStyle {
-  static var supa: SupaTextFieldStyle {
+  public static var supa: SupaTextFieldStyle {
     SupaTextFieldStyle()
   }
 }

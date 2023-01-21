@@ -1,14 +1,13 @@
 //
 //  SupaButtonStyle.swift
-//  SupaSlack
-//
-//  Created by Guilherme Souza on 23/12/22.
+//  (c) 2022 Binary Scraping Co.
+//  LICENSE: MIT
 //
 
 import SwiftUI
 
-struct SupaButtonStyle: ButtonStyle {
-  func makeBody(configuration: Self.Configuration) -> some View {
+public struct SupaButtonStyle: ButtonStyle {
+  public func makeBody(configuration: Self.Configuration) -> some View {
     configuration.label
       .frame(maxWidth: .infinity)
       .padding()
@@ -23,7 +22,7 @@ struct SupaButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SupaButtonStyle {
-  static var supa: SupaButtonStyle {
+  public static var supa: SupaButtonStyle {
     SupaButtonStyle()
   }
 }

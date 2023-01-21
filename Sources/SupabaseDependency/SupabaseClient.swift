@@ -1,8 +1,7 @@
 //
-//  Supabase.swift
-//  SupaSlack
-//
-//  Created by Guilherme Souza on 23/12/22.
+//  SupabaseClient.swift
+//  (c) 2023 Binary Scraping Co.
+//  LICENSE: MIT
 //
 
 import Dependencies
@@ -17,7 +16,7 @@ extension SupabaseClient: DependencyKey {
 }
 
 extension DependencyValues {
-  var supabase: SupabaseClient {
+  public var supabase: SupabaseClient {
     get { self[SupabaseClient.self] }
     set { self[SupabaseClient.self] = newValue }
   }

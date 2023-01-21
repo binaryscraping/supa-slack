@@ -1,11 +1,19 @@
+//
+//  AuthView.swift
+//  (c) 2022 Binary Scraping Co.
+//  LICENSE: MIT
+//
+
+import AuthClient
 import Dependencies
+import Helpers
 import SwiftUI
 import SwiftUIHelpers
 import ToastUI
 
 @MainActor
-final class AuthViewModel: ObservableObject {
-  enum Mode {
+public final class AuthViewModel: ObservableObject {
+  public enum Mode {
     case signIn, signUp
   }
 
@@ -16,7 +24,7 @@ final class AuthViewModel: ObservableObject {
   @Published var password: Password
   @Published var toast: ToastState?
 
-  init(
+  public init(
     mode: Mode = .signIn,
     email: EmailAddress = EmailAddress(""),
     password: Password = Password("")
@@ -48,26 +56,27 @@ final class AuthViewModel: ObservableObject {
 
   private func signUp() async throws {
     let result = try await auth.signUp(email, password)
-    switch result {
-    case .requiresConfirmation:
+    if result == .requiresConfirmation {
       toast = ToastState(style: .info, title: "A confirmation email was sent to \(email.rawValue).")
-    case .signedIn:
-      break
     }
   }
 
   private func signIn() async throws {
-    let session = try await auth.signIn(email, password)
-    if session.user.confirmedAt == nil {
+    let result = try await auth.signIn(email, password)
+    if result == .requiresConfirmation {
       toast = ToastState(style: .info, title: "A confirmation email was sent to \(email.rawValue).")
     }
   }
 }
 
-struct AuthView: View {
+public struct AuthView: View {
   @ObservedObject var viewModel: AuthViewModel
 
-  var body: some View {
+  public init(viewModel: AuthViewModel) {
+    self.viewModel = viewModel
+  }
+
+  public var body: some View {
     VStack(spacing: 12) {
       TextField("Email", text: $viewModel.email.rawValue)
         .keyboardType(.emailAddress)

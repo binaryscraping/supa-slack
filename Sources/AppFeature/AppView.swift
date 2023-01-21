@@ -1,10 +1,17 @@
+//
+//  AppView.swift
+//  (c) 2022 Binary Scraping Co.
+//  LICENSE: MIT
+//
+
+import AuthClient
+import AuthFeature
+import ChannelsFeature
 import Dependencies
-import GoTrue
-import Supabase
 import SwiftUI
 
 @MainActor
-final class AppViewModel: ObservableObject {
+public final class AppViewModel: ObservableObject {
   @Dependency(\.auth) private var auth
 
   @Published private(set) var authInitialized = false
@@ -14,7 +21,7 @@ final class AppViewModel: ObservableObject {
   let authViewModel = AuthViewModel()
   let channelListViewModel = ChannelListViewModel()
 
-  init() {
+  public init() {
     authEventTask = Task {
       for await _ in auth.authEvent() {
         let session = try? await auth.session()
@@ -36,11 +43,15 @@ final class AppViewModel: ObservableObject {
   }
 }
 
-struct AppView: View {
+public struct AppView: View {
   @ObservedObject var viewModel: AppViewModel
 
+  public init(viewModel: AppViewModel) {
+    self.viewModel = viewModel
+  }
+
   @ViewBuilder
-  var body: some View {
+  public var body: some View {
     if viewModel.authInitialized {
       if viewModel.session == nil {
         AuthView(viewModel: viewModel.authViewModel)
