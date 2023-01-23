@@ -24,6 +24,22 @@ extension APIClient: DependencyKey {
           .in(column: "id", value: ids.map(\.rawValue))
           .execute()
           .value
+      },
+      fetchMessages: { channelId in
+        try await supabase.database
+          .from("messages")
+          .select()
+          .eq(column: "channel_id", value: channelId.rawValue)
+          .execute()
+          .value
+      },
+      insertMessage: { payload in
+        try await supabase.database
+          .from("messages")
+          .insert(values: payload, returning: .representation)
+          .single()
+          .execute()
+          .value
       }
     )
   }()

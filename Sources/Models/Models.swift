@@ -45,18 +45,17 @@ public struct Channel: Identifiable, Codable, Hashable {
   )
 }
 
-public struct Message: Identifiable, Codable, Hashable {
+public struct Message: Identifiable, Hashable {
   public typealias RemoteID = Tagged<Self, Int>
 
   public let id: Tagged<Self, UUID>
-  public let remoteID: RemoteID?
   public let insertedAt: Date
   public let message: String
-  public let channelID: Channel.ID
-  public let authorID: User.ID
+  public let author: User
   public let status: Status
+  public let readAt: Date?
 
-  public enum Status: Int, Codable {
+  public enum Status: Int {
     case local
     case remote
     case failure
@@ -64,19 +63,60 @@ public struct Message: Identifiable, Codable, Hashable {
 
   public init(
     id: Tagged<Self, UUID>,
-    remoteID: RemoteID?,
     insertedAt: Date,
     message: String,
-    channelID: Channel.ID,
-    authorID: User.ID,
-    status: Status
+    author: User,
+    status: Status,
+    readAt: Date?
   ) {
     self.id = id
-    self.remoteID = remoteID
     self.insertedAt = insertedAt
+    self.message = message
+    self.author = author
+    self.status = status
+    self.readAt = readAt
+  }
+
+  public static let local = Message(
+    id: Tagged<Message, UUID>(),
+    insertedAt: .now,
+    message: "Local message",
+    author: .init(id: .init(), username: "grsouza"),
+    status: .local,
+    readAt: .now
+  )
+  public static let remote = Message(
+    id: Tagged<Message, UUID>(),
+    insertedAt: .now,
+    message: "Remote message",
+    author: .init(id: .init(), username: "grsouza"),
+    status: .remote,
+    readAt: .now
+  )
+  public static let failure = Message(
+    id: Tagged<Message, UUID>(),
+    insertedAt: .now,
+    message: "Failure message",
+    author: .init(id: .init(), username: "grsouza"),
+    status: .failure,
+    readAt: .now
+  )
+}
+
+public struct InsertMessagePayload: Encodable {
+  public let message: String
+  public let channelID: Int
+  public let authorID: UUID
+
+  public init(message: String, channelID: Int, authorID: UUID) {
     self.message = message
     self.channelID = channelID
     self.authorID = authorID
-    self.status = status
+  }
+
+  enum CodingKeys: String, CodingKey {
+    case message
+    case channelID = "channel_id"
+    case authorID = "user_id"
   }
 }

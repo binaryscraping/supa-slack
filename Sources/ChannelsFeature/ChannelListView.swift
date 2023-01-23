@@ -94,9 +94,11 @@ extension Color {
 
 public struct ChannelListView: View {
   @ObservedObject var model: ChannelListViewModel
+  let didSelectChannel: (Channel) -> Void
 
-  public init(model: ChannelListViewModel) {
+  public init(model: ChannelListViewModel, didSelectChannel: @escaping (Channel) -> Void) {
     self.model = model
+    self.didSelectChannel = didSelectChannel
   }
 
   public var body: some View {
@@ -109,13 +111,17 @@ public struct ChannelListView: View {
 
       Section("Channels") {
         ForEach(model.channels) { channel in
-          HStack {
-            Text(channel.slug).frame(maxWidth: .infinity, alignment: .leading)
-            if channel.unreadMessagesCount > 0 {
-              Text("\(channel.unreadMessagesCount)")
+          Button {
+            didSelectChannel(channel)
+          } label: {
+            HStack {
+              Text(channel.slug).frame(maxWidth: .infinity, alignment: .leading)
+              if channel.unreadMessagesCount > 0 {
+                Text("\(channel.unreadMessagesCount)")
+              }
             }
+            .bold(channel.unreadMessagesCount > 0)
           }
-          .bold(channel.unreadMessagesCount > 0)
         }
       }
     }
@@ -145,6 +151,6 @@ struct ChannelListView_Previews: PreviewProvider {
       } operation: {
         ChannelListViewModel()
       }
-    )
+    ) { _ in }
   }
 }

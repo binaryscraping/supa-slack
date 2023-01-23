@@ -30,8 +30,8 @@ extension AuthClient: DependencyKey {
         )
       },
       session: {
-        _ = try await supabase.auth.session
-        return .init()
+        let session = try await supabase.auth.session
+        return .init(user: .init(id: session.user.id))
       },
       signUp: { email, password in
         let result = try await supabase.auth.signUp(

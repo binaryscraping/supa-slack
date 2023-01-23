@@ -25,7 +25,19 @@ public enum AuthResult {
 }
 
 public struct Session {
-  public init() {}
+  public let user: User
+
+  public init(user: User) {
+    self.user = user
+  }
+
+  public struct User {
+    public let id: UUID
+
+    public init(id: UUID) {
+      self.id = id
+    }
+  }
 }
 
 public struct AuthClient {

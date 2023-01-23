@@ -13,6 +13,7 @@ let package = Package(
     .library(name: "AuthFeature", targets: ["AuthFeature"]),
     .library(name: "ChannelsFeature", targets: ["ChannelsFeature"]),
     .library(name: "DatabaseClientLive", targets: ["DatabaseClientLive"]),
+    .library(name: "MessagesFeature", targets: ["MessagesFeature"]),
   ],
   dependencies: [
     .package(url: "https://github.com/binaryscraping/swiftui-toast", branch: "main"),
@@ -45,6 +46,7 @@ let package = Package(
       dependencies: [
         "AuthFeature",
         "ChannelsFeature",
+        "MessagesFeature",
         .product(name: "Dependencies", package: "swift-dependencies"),
       ]
     ),
@@ -102,6 +104,15 @@ let package = Package(
       name: "Helpers",
       dependencies: [
         .product(name: "ToastUI", package: "swiftui-toast"),
+      ]
+    ),
+    .target(
+      name: "MessagesFeature",
+      dependencies: [
+        "Models",
+        "DatabaseClient",
+        "APIClient",
+        .product(name: "Dependencies", package: "swift-dependencies"),
       ]
     ),
     .target(

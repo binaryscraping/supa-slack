@@ -20,6 +20,7 @@ struct UserTable: Codable, FetchableRecord, PersistableRecord {
 
   enum Columns {
     static let id = Column(CodingKeys.id)
+    static let username = Column(CodingKeys.username)
   }
 }
 
@@ -58,13 +59,21 @@ struct MessageTable: Codable, FetchableRecord, PersistableRecord {
   }
 
   enum Columns {
+    static let remoteID = Column(CodingKeys.remoteID)
     static let insertedAt = Column(CodingKeys.insertedAt)
+    static let channelID = Column(CodingKeys.channelID)
+    static let status = Column(CodingKeys.status)
     static let readAt = Column(CodingKeys.readAt)
   }
 
   static let channel = belongsTo(ChannelTable.self)
   var channel: QueryInterfaceRequest<ChannelTable> {
     request(for: Self.channel)
+  }
+
+  static let author = belongsTo(UserTable.self)
+  var author: QueryInterfaceRequest<UserTable> {
+    request(for: Self.author)
   }
 }
 
@@ -103,11 +112,11 @@ struct DatabaseClientLive {
 
       // Prepare the database with test fixtures if requested
       if CommandLine.arguments.contains("-fixedTestData") {
-//                try appDatabase.createPlayersForUITests()
+        //                try appDatabase.createPlayersForUITests()
       } else {
         // Otherwise, populate the database if it is empty, for better
         // demo purpose.
-//                try appDatabase.createRandomPlayersIfEmpty()
+        //                try appDatabase.createRandomPlayersIfEmpty()
       }
 
       return appDatabase
@@ -163,7 +172,7 @@ struct DatabaseClientLive {
       try db.create(table: "user") { t in
         t.column("id", .text).primaryKey()
         t.column("username", .text).notNull()
-//        t.column("status", .text).notNull()
+        //        t.column("status", .text).notNull()
       }
     }
 
@@ -189,9 +198,9 @@ extension DatabaseClient {
     self.init(
       saveUsers: { users in
         try client.dbWriter.write { db in
-          try UserTable
-            .filter(!users.map(\.id.rawValue).contains(UserTable.Columns.id))
-            .deleteAll(db)
+          //          try UserTable
+          //            .filter(!users.map(\.id.rawValue).contains(UserTable.Columns.id))
+          //            .deleteAll(db)
 
           try users
             .map { UserTable(id: $0.id.rawValue, username: $0.username) }
@@ -221,9 +230,9 @@ extension DatabaseClient {
       },
       saveChannels: { channels in
         try client.dbWriter.write { db in
-          try ChannelTable
-            .filter(!channels.map(\.id).contains(ChannelTable.Columns.id))
-            .deleteAll(db)
+          //          try ChannelTable
+          //            .filter(!channels.map(\.id).contains(ChannelTable.Columns.id))
+          //            .deleteAll(db)
 
           try channels.map {
             ChannelTable(
@@ -240,17 +249,89 @@ extension DatabaseClient {
       },
       insertMessage: { message in
         try client.dbWriter.write { db in
-          try MessageTable(
-            id: message.id.rawValue,
-            remoteID: message.remoteID?.rawValue,
-            insertedAt: message.insertedAt,
+          let now = Date.now
+          let savedMessage = try MessageTable(
+            id: UUID(),
+            remoteID: nil,
+            insertedAt: now,
             message: message.message,
-            channelID: message.channelID.rawValue,
-            authorID: message.authorID.rawValue,
-            status: .init(from: message.status),
-            readAt: nil
-          )
-          .save(db)
+            channelID: message.channelID,
+            authorID: message.authorID,
+            status: .local,
+            readAt: now
+          ).saved(db)
+
+          return .init(savedMessage.id)
+        }
+      },
+      observeMessages: { channelId in
+        AsyncThrowingStream(
+          ValueObservation.tracking { db in
+            let messages = try MessageTable
+              .filter(MessageTable.Columns.channelID == channelId.rawValue)
+              .order(MessageTable.Columns.insertedAt.desc).fetchAll(db)
+            return try messages.map { message in
+              let author = try message.author.fetchOne(db)!
+              return Message(
+                id: .init(message.id),
+                insertedAt: message.insertedAt,
+                message: message.message,
+                author: .init(id: .init(author.id), username: author.username),
+                status: .init(from: message.status),
+                readAt: message.readAt
+              )
+            }
+          }
+          .values(in: client.dbWriter)
+        )
+      },
+      saveMessages: { messages in
+        try client.dbWriter.write { db in
+          for message in messages {
+            if let storedMessage = try MessageTable
+              .filter(MessageTable.Columns.remoteID == message.remoteID).fetchOne(db)
+            {
+              try MessageTable(
+                id: storedMessage.id,
+                remoteID: message.remoteID,
+                insertedAt: message.insertedAt,
+                message: message.message,
+                channelID: message.channelID,
+                authorID: message.authorID,
+                status: .remote,
+                readAt: storedMessage.readAt
+              )
+              .update(db)
+            } else {
+              try MessageTable(
+                id: UUID(),
+                remoteID: message.remoteID,
+                insertedAt: message.insertedAt,
+                message: message.message,
+                channelID: message.channelID,
+                authorID: message.authorID,
+                status: .remote,
+                readAt: nil
+              )
+              .insert(db)
+            }
+          }
+        }
+      },
+      updateMessage: { id, remoteID, status in
+        try client.dbWriter.write { db in
+          _ = try MessageTable.filter(key: id.rawValue)
+            .updateAll(
+              db,
+              MessageTable.Columns.remoteID.set(to: remoteID?.rawValue),
+              MessageTable.Columns.status.set(to: status.rawValue)
+            )
+        }
+      },
+      readMessage: { id in
+        try client.dbWriter.write { db in
+          _ = try MessageTable.filter(key: id.rawValue)
+            .updateAll(db, MessageTable.Columns.readAt.set(to: Date()))
         }
       }
     )
@@ -259,6 +340,19 @@ extension DatabaseClient {
 
 extension MessageTable.Status {
   init(from status: Message.Status) {
+    switch status {
+    case .local:
+      self = .local
+    case .remote:
+      self = .remote
+    case .failure:
+      self = .failure
+    }
+  }
+}
+
+extension Message.Status {
+  init(from status: MessageTable.Status) {
     switch status {
     case .local:
       self = .local

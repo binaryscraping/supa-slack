@@ -18,9 +18,6 @@
 		79915203297C160800F2A6DD /* APIClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 79915202297C160800F2A6DD /* APIClientLive */; };
 		79915205297C160800F2A6DD /* AuthClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 79915204297C160800F2A6DD /* AuthClientLive */; };
 		79915207297C160800F2A6DD /* DatabaseClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 79915206297C160800F2A6DD /* DatabaseClientLive */; };
-		79D6A0CA2959D58D00186187 /* ComposeMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6A0C92959D58D00186187 /* ComposeMessageView.swift */; };
-		79D6A0CC2959D5CA00186187 /* MessageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6A0CB2959D5CA00186187 /* MessageRowView.swift */; };
-		79DB4CCB2959AB4200AE167A /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB4CCA2959AB4200AE167A /* MessagesListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +30,6 @@
 		7967ACAF2956200400C30D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7967ACB12956200400C30D93 /* SupaSlack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SupaSlack.entitlements; sourceTree = "<group>"; };
 		7967ACB32956200400C30D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		79D6A0C92959D58D00186187 /* ComposeMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageView.swift; sourceTree = "<group>"; };
-		79D6A0CB2959D5CA00186187 /* MessageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRowView.swift; sourceTree = "<group>"; };
-		79DB4CCA2959AB4200AE167A /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +82,6 @@
 				791497D82956FF9600525E6A /* Models.swift */,
 				791497DA295700B900525E6A /* APIClient.swift */,
 				791497DC2957058000525E6A /* Store.swift */,
-				79DB4CCA2959AB4200AE167A /* MessagesListView.swift */,
-				79D6A0C92959D58D00186187 /* ComposeMessageView.swift */,
-				79D6A0CB2959D5CA00186187 /* MessageRowView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -182,12 +173,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				791497DD2957058000525E6A /* Store.swift in Sources */,
-				79D6A0CA2959D58D00186187 /* ComposeMessageView.swift in Sources */,
-				79D6A0CC2959D5CA00186187 /* MessageRowView.swift in Sources */,
 				791497DB295700B900525E6A /* APIClient.swift in Sources */,
 				791497D72956FF5F00525E6A /* ChannelListView.swift in Sources */,
 				7967ACAC2956200300C30D93 /* SupaSlackApp.swift in Sources */,
-				79DB4CCB2959AB4200AE167A /* MessagesListView.swift in Sources */,
 				791497D92956FF9600525E6A /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

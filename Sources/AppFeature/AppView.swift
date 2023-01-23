@@ -8,6 +8,8 @@ import AuthClient
 import AuthFeature
 import ChannelsFeature
 import Dependencies
+import MessagesFeature
+import Models
 import SwiftUI
 
 @MainActor
@@ -20,6 +22,8 @@ public final class AppViewModel: ObservableObject {
 
   let authViewModel = AuthViewModel()
   let channelListViewModel = ChannelListViewModel()
+
+  @Published var messageViewModel: MessagesListViewModel?
 
   public init() {
     authEventTask = Task {
@@ -41,6 +45,12 @@ public final class AppViewModel: ObservableObject {
     await auth.initialize()
     authInitialized = true
   }
+
+  func didSelectChannel(_ channel: Channel) {
+    messageViewModel = withDependencies(from: self) {
+      MessagesListViewModel(channel: channel)
+    }
+  }
 }
 
 public struct AppView: View {
@@ -57,7 +67,12 @@ public struct AppView: View {
         AuthView(viewModel: viewModel.authViewModel)
       } else {
         NavigationStack {
-          ChannelListView(model: viewModel.channelListViewModel)
+          ChannelListView(model: viewModel.channelListViewModel) {
+            viewModel.didSelectChannel($0)
+          }
+          .navigationDestination(unwrapping: $viewModel.messageViewModel) { $messageViewModel in
+            MessagesListView(model: messageViewModel)
+          }
         }
       }
     } else {

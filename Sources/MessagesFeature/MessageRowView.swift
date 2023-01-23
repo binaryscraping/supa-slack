@@ -4,6 +4,7 @@
 //  LICENSE: MIT
 //
 
+import Models
 import SwiftUI
 
 struct MessageRowView: View {
@@ -11,12 +12,10 @@ struct MessageRowView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {
-      if let author = message.author {
-        Text(author.username)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .font(.footnote)
-          .foregroundColor(.secondary)
-      }
+      Text(message.author.username)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .font(.footnote)
+        .foregroundColor(.secondary)
 
       Text(message.message)
         .frame(maxWidth: .infinity, alignment: .leading)
