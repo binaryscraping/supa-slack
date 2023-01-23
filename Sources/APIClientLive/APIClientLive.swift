@@ -33,11 +33,10 @@ extension APIClient: DependencyKey {
           .execute()
           .value
       },
-      insertMessage: { payload in
+      insertMessages: { payload in
         try await supabase.database
           .from("messages")
           .insert(values: payload, returning: .representation)
-          .single()
           .execute()
           .value
       }

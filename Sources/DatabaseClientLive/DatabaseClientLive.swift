@@ -264,6 +264,28 @@ extension DatabaseClient {
           return .init(savedMessage.id)
         }
       },
+      observeUnsyncedMessages: {
+        AsyncThrowingStream(
+          ValueObservation.tracking { db in
+            let messages = try MessageTable
+              .filter(MessageTable.Columns.status != MessageTable.Status.remote.rawValue)
+              .fetchAll(db)
+            return try messages.map { message in
+              let author = try message.author.fetchOne(db)!
+              return Message(
+                id: .init(message.id),
+                insertedAt: message.insertedAt,
+                message: message.message,
+                author: .init(id: .init(author.id), username: author.username),
+                channelID: .init(message.channelID),
+                status: .init(from: message.status),
+                readAt: message.readAt
+              )
+            }
+          }
+          .values(in: client.dbWriter)
+        )
+      },
       observeMessages: { channelId in
         AsyncThrowingStream(
           ValueObservation.tracking { db in
@@ -277,6 +299,7 @@ extension DatabaseClient {
                 insertedAt: message.insertedAt,
                 message: message.message,
                 author: .init(id: .init(author.id), username: author.username),
+                channelID: .init(message.channelID),
                 status: .init(from: message.status),
                 readAt: message.readAt
               )

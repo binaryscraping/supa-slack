@@ -50,18 +50,18 @@ public struct APIClient: Sendable {
   public var fetchChannels: @Sendable () async throws -> [ChannelResponse]
   public var fetchUsers: @Sendable ([User.ID]) async throws -> [User]
   public var fetchMessages: @Sendable (Channel.ID) async throws -> [MessageResponse]
-  public var insertMessage: @Sendable (InsertMessagePayload) async throws -> MessageResponse
+  public var insertMessages: @Sendable ([InsertMessagePayload]) async throws -> [MessageResponse]
 
   public init(
     fetchChannels: @escaping @Sendable () async throws -> [ChannelResponse],
     fetchUsers: @escaping @Sendable ([User.ID]) async throws -> [User],
     fetchMessages: @escaping @Sendable (Channel.ID) async throws -> [MessageResponse],
-    insertMessage: @escaping @Sendable (InsertMessagePayload) async throws -> MessageResponse
+    insertMessages: @escaping @Sendable ([InsertMessagePayload]) async throws -> [MessageResponse]
   ) {
     self.fetchChannels = fetchChannels
     self.fetchUsers = fetchUsers
     self.fetchMessages = fetchMessages
-    self.insertMessage = insertMessage
+    self.insertMessages = insertMessages
   }
 }
 
@@ -70,7 +70,7 @@ extension APIClient: TestDependencyKey {
     fetchChannels: unimplemented("APIClient.fetchChannels"),
     fetchUsers: unimplemented("APIClient.fetchUsers"),
     fetchMessages: unimplemented("APIClient.fetchMessages"),
-    insertMessage: unimplemented("APIClient.insertMessage")
+    insertMessages: unimplemented("APIClient.insertMessages")
   )
 }
 

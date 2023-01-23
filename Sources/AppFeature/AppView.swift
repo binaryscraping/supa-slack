@@ -22,6 +22,7 @@ public final class AppViewModel: ObservableObject {
 
   let authViewModel = AuthViewModel()
   let channelListViewModel = ChannelListViewModel()
+  let syncManager = SyncManager()
 
   @Published var messageViewModel: MessagesListViewModel?
 
@@ -29,6 +30,13 @@ public final class AppViewModel: ObservableObject {
     authEventTask = Task {
       for await _ in auth.authEvent() {
         let session = try? await auth.session()
+
+        if session != nil {
+          await syncManager.start()
+        } else {
+          await syncManager.stop()
+        }
+
         withAnimation {
           self.session = session
         }

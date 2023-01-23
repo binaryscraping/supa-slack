@@ -16,6 +16,7 @@ let package = Package(
     .library(name: "MessagesFeature", targets: ["MessagesFeature"]),
   ],
   dependencies: [
+    .package(url: "https://github.com/apple/swift-async-algorithms", from: "0.0.4"),
     .package(url: "https://github.com/binaryscraping/swiftui-toast", branch: "main"),
     .package(url: "https://github.com/binaryscraping/bs-apple-kit", branch: "main"),
     .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.1.0"),
@@ -48,6 +49,7 @@ let package = Package(
         "ChannelsFeature",
         "MessagesFeature",
         .product(name: "Dependencies", package: "swift-dependencies"),
+        .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
       ]
     ),
     .target(

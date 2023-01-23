@@ -43,6 +43,7 @@ public struct DatabaseClient {
   public var observeChannels: () -> AsyncThrowingStream<[Channel], Error>
   public var saveChannels: ([SaveChannelPayload]) throws -> Void
   public var insertMessage: (InsertMessagePayload) throws -> Message.ID
+  public var observeUnsyncedMessages: () -> AsyncThrowingStream<[Message], Error>
   public var observeMessages: (Channel.ID) -> AsyncThrowingStream<[Message], Error>
   public var saveMessages: ([SaveMessagePayload]) throws -> Void
   public var updateMessage: (Message.ID, Message.RemoteID?, Message.Status) throws -> Void
@@ -53,6 +54,7 @@ public struct DatabaseClient {
     observeChannels: @escaping () -> AsyncThrowingStream<[Channel], Error>,
     saveChannels: @escaping ([SaveChannelPayload]) throws -> Void,
     insertMessage: @escaping (InsertMessagePayload) throws -> Message.ID,
+    observeUnsyncedMessages: @escaping () -> AsyncThrowingStream<[Message], Error>,
     observeMessages: @escaping (Channel.ID) -> AsyncThrowingStream<[Message], Error>,
     saveMessages: @escaping ([SaveMessagePayload]) throws -> Void,
     updateMessage: @escaping (Message.ID, Message.RemoteID?, Message.Status) throws -> Void,
@@ -62,6 +64,7 @@ public struct DatabaseClient {
     self.observeChannels = observeChannels
     self.saveChannels = saveChannels
     self.insertMessage = insertMessage
+    self.observeUnsyncedMessages = observeUnsyncedMessages
     self.observeMessages = observeMessages
     self.saveMessages = saveMessages
     self.updateMessage = updateMessage
@@ -76,6 +79,7 @@ extension DatabaseClient: TestDependencyKey {
       observeChannels: unimplemented("DatabaseClient.fetchChannels"),
       saveChannels: unimplemented("DatabaseClient.saveChannels"),
       insertMessage: unimplemented("DatabaseClient.insertMessage"),
+      observeUnsyncedMessages: unimplemented("DatabaseClient.observeUnsyncedMessages"),
       observeMessages: unimplemented("DatabaseClient.observeMessages"),
       saveMessages: unimplemented("DatabaseClient.saveMessages"),
       updateMessage: unimplemented("DatabaseClient.updateMessage"),

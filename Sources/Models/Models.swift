@@ -52,6 +52,7 @@ public struct Message: Identifiable, Hashable {
   public let insertedAt: Date
   public let message: String
   public let author: User
+  public let channelID: Channel.ID
   public let status: Status
   public let readAt: Date?
 
@@ -66,6 +67,7 @@ public struct Message: Identifiable, Hashable {
     insertedAt: Date,
     message: String,
     author: User,
+    channelID: Channel.ID,
     status: Status,
     readAt: Date?
   ) {
@@ -73,6 +75,7 @@ public struct Message: Identifiable, Hashable {
     self.insertedAt = insertedAt
     self.message = message
     self.author = author
+    self.channelID = channelID
     self.status = status
     self.readAt = readAt
   }
@@ -82,6 +85,7 @@ public struct Message: Identifiable, Hashable {
     insertedAt: .now,
     message: "Local message",
     author: .init(id: .init(), username: "grsouza"),
+    channelID: 1,
     status: .local,
     readAt: .now
   )
@@ -90,6 +94,7 @@ public struct Message: Identifiable, Hashable {
     insertedAt: .now,
     message: "Remote message",
     author: .init(id: .init(), username: "grsouza"),
+    channelID: 1,
     status: .remote,
     readAt: .now
   )
@@ -98,6 +103,7 @@ public struct Message: Identifiable, Hashable {
     insertedAt: .now,
     message: "Failure message",
     author: .init(id: .init(), username: "grsouza"),
+    channelID: 1,
     status: .failure,
     readAt: .now
   )

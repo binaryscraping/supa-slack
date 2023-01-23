@@ -16,12 +16,7 @@ public final class MessagesListViewModel: ObservableObject {
   let channel: Channel
 
   @Published var isLoadingMessages = false
-  @Published var messages: [Message] = [] {
-    didSet {
-      retryMessages()
-    }
-  }
-
+  @Published var messages: [Message] = []
   @Published var newMessage: String = ""
 
   private var _scrollID: Message.ID?
@@ -96,11 +91,6 @@ public final class MessagesListViewModel: ObservableObject {
         let localMessageID = try db.insertMessage(insertMessagePayload)
         newMessage = ""
         _scrollID = localMessageID
-
-        Task {
-          await submitMessageToRemote(insertMessagePayload, localID: localMessageID)
-        }
-
       } catch {
         dump(error)
       }
@@ -113,30 +103,6 @@ public final class MessagesListViewModel: ObservableObject {
       try db.readMessage(message.id)
     } catch {
       dump(error)
-    }
-  }
-
-  private func submitMessageToRemote(_ payload: InsertMessagePayload, localID: Message.ID) async {
-    do {
-      let remoteMessage = try await api.insertMessage(payload)
-      try? db.updateMessage(localID, .init(remoteMessage.id), .remote)
-    } catch {
-      dump(error)
-      try? db.updateMessage(localID, nil, .failure)
-    }
-  }
-
-  private func retryMessages() {
-    Task {
-      let unsyncedMessages = messages.filter { $0.status != .remote }
-      for message in unsyncedMessages {
-        let payload = InsertMessagePayload(
-          message: message.message,
-          channelID: channel.id.rawValue,
-          authorID: message.author.id.rawValue
-        )
-        await submitMessageToRemote(payload, localID: message.id)
-      }
     }
   }
 }
